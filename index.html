@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Perusahaan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-8">
+
+    <!-- Profil Perusahaan -->
+    <div class="bg-white shadow rounded-xl p-6">
+      <h2 class="text-2xl font-bold mb-4">Profil Perusahaan</h2>
+      <p><strong>Nama:</strong> PT Maju Jaya Abadi</p>
+      <p><strong>Alamat:</strong> Jl. Merdeka No.123, Jakarta</p>
+      <p><strong>Bidang:</strong> Teknologi dan Konsultasi</p>
+      <p><strong>Jumlah Karyawan:</strong> 120 Orang</p>
+    </div>
+
+    <!-- Data Karyawan -->
+    <div class="bg-white shadow rounded-xl p-6">
+      <h2 class="text-2xl font-bold mb-4">Data Karyawan</h2>
+      <table class="w-full border border-gray-300">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-2 border">Nama</th>
+            <th class="p-2 border">Jabatan</th>
+            <th class="p-2 border">Divisi</th>
+            <th class="p-2 border">Gaji</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-2 border">Andi Wijaya</td>
+            <td class="p-2 border">Manager</td>
+            <td class="p-2 border">Keuangan</td>
+            <td class="p-2 border">Rp15.000.000</td>
+          </tr>
+          <tr>
+            <td class="p-2 border">Sinta Ayu</td>
+            <td class="p-2 border">Staff</td>
+            <td class="p-2 border">IT</td>
+            <td class="p-2 border">Rp9.000.000</td>
+          </tr>
+          <tr>
+            <td class="p-2 border">Budi Prasetyo</td>
+            <td class="p-2 border">HRD</td>
+            <td class="p-2 border">SDM</td>
+            <td class="p-2 border">Rp10.000.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Keuangan dan Diagram -->
+    <div class="bg-white shadow rounded-xl p-6">
+      <h2 class="text-2xl font-bold mb-4">Data Keuangan</h2>
+      <p><strong>Pendapatan:</strong> Rp 2.000.000.000</p>
+      <p><strong>Pengeluaran:</strong> Rp 1.200.000.000</p>
+      <p><strong>Laba Bersih:</strong> Rp 800.000.000</p>
+
+      <canvas id="keuanganChart" class="mt-6"></canvas>
+    </div>
+
+  </div>
+
+  <script>
+    const ctx = document.getElementById('keuanganChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Pendapatan', 'Pengeluaran', 'Laba Bersih'],
+        datasets: [{
+          label: 'Keuangan (Rp)',
+          data: [2000000000, 1200000000, 800000000],
+          backgroundColor: ['#10b981', '#ef4444', '#3b82f6']
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            ticks: {
+              callback: function(value) {
+                return 'Rp ' + value.toLocaleString('id-ID');
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
